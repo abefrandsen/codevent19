@@ -1,3 +1,5 @@
+from itertools import product
+
 def intcode(code):
     """
     Execute the instructions given in the input code. 
@@ -25,13 +27,12 @@ print("Part 1 answer: {}".format(intcode(incode)[0]))
 
 
 # part 2
-for noun in range(100):
-    for verb in range(100):
-        with open("p2_input.txt","r") as f:
-            incode = [int(c) for c in f.readline().split(",")]
-        incode[1] = noun
-        incode[2] = verb
-        val = intcode(incode)[0]
-        if val == 19690720:
-            print("Part 2 answer: {}".format(100*noun + verb))
-            break
+for noun, verb in product(range(100),range(100)):
+    with open("p2_input.txt","r") as f:
+        incode = [int(c) for c in f.readline().split(",")]
+    incode[1] = noun
+    incode[2] = verb
+    val = intcode(incode)[0]
+    if val == 19690720:
+        break
+print(100*noun + verb)
