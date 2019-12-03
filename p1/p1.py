@@ -20,6 +20,5 @@ fuels = get_fuel(masses)
 tot_fuels = np.zeros(fuels.shape)
 while fuels.sum()>0:
     tot_fuels += fuels
-    #print(fuels)
     fuels = get_fuel(fuels)
 print("Part 2 answer: {}".format(int(tot_fuels.sum())))
